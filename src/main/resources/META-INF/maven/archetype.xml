@@ -1,0 +1,9 @@
+<archetype>
+  <id>dockler</id>
+  <sources>
+    <source>src/app/java/App.java</source>
+  </sources>
+  <testSources>
+    <source>src/test/java/AppTest.java</source>
+  </testSources>
+</archetype>
