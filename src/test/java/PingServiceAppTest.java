@@ -17,10 +17,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class PingServiceAppTest {
 
-    private PingService pingService;
+    @Test
+    void testPinging() {
 
-    @BeforeEach
-    void init() {
+        //Arrange (Done in the @BeforeAll method)
+
         Map<String, String> localDB = new Hashtable<>();
         Properties props = new Properties();
 
@@ -31,13 +32,7 @@ class PingServiceAppTest {
         } catch (IOException ex) {
             fail("Test failed. IO Exception occurred while reading the input stream");
         }
-        pingService = new PingService(props, localDB);
-    }
-
-    @Test
-    void testPinging() {
-
-        //Arrange (Done in the @BeforeAll method)
+        PingService pingService = new PingService(props, localDB);
 
         //Act
         Map<String, PingResultResource> pingResult = pingService.pingHosts();
@@ -59,7 +54,6 @@ class PingServiceAppTest {
                     if (result.tcpResult() == null) {
                         throw new FriendlyException("Test failed. TCP ping didn't return any result");
                     }
-
                 }
             });
         });
