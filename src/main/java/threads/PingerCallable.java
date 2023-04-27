@@ -162,15 +162,6 @@ public class PingerCallable implements Callable<Map<String, PingResultResource>>
         }
     }
 
-    /**
-     * This method update the results to be returned. It is synchronized to avoid being manipulated by multiple
-     * threads at once as we are running our tasks in parallel tasks and the results need to be consistent and
-     * reliably accurate.
-     */
-    private synchronized void updateResults() {
-        results.put(host, new PingResultResource(now(), icmpResult, reportedErrors, tcpResult, traceResult));
-    }
-
     private void reachHostWithTrace() {
 
         if (localDB.get(host + "-trace") == null) {
@@ -273,5 +264,14 @@ public class PingerCallable implements Callable<Map<String, PingResultResource>>
     private void logHttpRequestFailure(String reportServiceEndpoint, Exception e) {
         logger.log(Level.SEVERE, String.format("Reporting error %s. Possible cause %s",
                 reportServiceEndpoint, e.getMessage()));
+    }
+
+    /**
+     * This method update the results to be returned. It is synchronized to avoid being manipulated by multiple
+     * threads at once as we are running our tasks in parallel tasks and the results need to be consistent and
+     * reliably accurate.
+     */
+    private synchronized void updateResults() {
+        results.put(host, new PingResultResource(now(), icmpResult, reportedErrors, tcpResult, traceResult));
     }
 }
