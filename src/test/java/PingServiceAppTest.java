@@ -20,7 +20,7 @@ class PingServiceAppTest {
     @Test
     void testPinging() {
 
-        //Arrange (Done in the @BeforeAll method)
+        //Arrange
         Map<String, String> localDB = new Hashtable<>();
         Properties props = new Properties();
 
