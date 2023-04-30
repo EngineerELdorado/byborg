@@ -32,8 +32,8 @@ public class PingService {
         this.properties = properties;
         this.hosts = properties.getProperty("hosts").split(",");
         this.executor = Executors.newFixedThreadPool(hosts.length);
-
         this.LOGGER = Logger.getLogger(PingService.class.getName());
+
         FileHandler handler;
         try {
             handler = new FileHandler(properties.getProperty("log-file"));
@@ -56,8 +56,8 @@ public class PingService {
         for (String host : hosts) {
             try {
                 ErrorReportDto errorReportDto = new ErrorReportDto();
-                executor.submit(new PingerCallable(host, properties, fullResults,
-                        errorReportDto, LOGGER, localDB)).get();
+                executor.submit(new PingerCallable(host, properties, fullResults, errorReportDto, LOGGER,
+                        localDB)).get();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             } catch (ExecutionException e) {

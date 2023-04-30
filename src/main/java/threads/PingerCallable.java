@@ -69,6 +69,7 @@ public class PingerCallable implements Callable<Map<String, PingResultResource>>
 
     private void reachHostWithIcmp() {
 
+        //Check if the current host is not currently executing with the icmp ping command
         if (localDB.get(host + "-icmp") == null) {
 
             String line;

@@ -1,10 +1,8 @@
 import exceptions.FriendlyException;
 import services.PingService;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.*;
 
 import static java.lang.Long.parseLong;
@@ -15,7 +13,7 @@ public class PingMain {
 
     /**
      * We start by loading the configurations into the Properties object
-     * Then we start the sheduled job Execution
+     * Then we start the scheduled job Execution
      *
      * @param args
      */
